@@ -1,6 +1,5 @@
 // File: index.js
 const { writeToCSV } = require("./csvHelper");
-// const fetch = require('node-fetch'); // Install via npm if not present
 const ical = require("node-ical"); // Install via npm for iCal parsing
 const path = require("path");
 const { URL } = require("url");
@@ -12,36 +11,13 @@ function floatToDuration(hours) {
 
 // Fetch iCal data from the provided URL
 async function fetchData(icalUrl) {
-  console.log(icalUrl);
   try {
-    // const response = await fetch(icalUrl);
-    // ical.fromURL(icalUrl, {}, function (err, data) {
-    //   console.log(err, data);
-    //   if (err) {
-    //     return;
-    //   }
-    //   for (let k in data) {
-    //     if (data.hasOwnProperty(k)) {
-    //       var ev = data[k];
-    //       if (data[k].type == "VEVENT") {
-    //         console.log(
-    //           `${ev.summary} is in ${
-    //             ev.location
-    //           } on the ${ev.start.getDate()} of ${
-    //             months[ev.start.getMonth()]
-    //           } at ${ev.start.toLocaleTimeString("en-GB")}`
-    //         );
-    //       }
-    //     }
-    //   }
-    // });
-
     const response = await ical.fromURL(icalUrl);
-    // console.log(response);
+
     if (response.error) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    // return await JSON.stringify(response);
+
     return response;
   } catch (error) {
     throw new Error(`Error fetching data: ${error.message}`);
