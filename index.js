@@ -65,32 +65,8 @@ function formatDateWithTimezone(date, timezoneOffset) {
   const minutes = String(localDate.getMinutes()).padStart(2, "0");
   const seconds = String(localDate.getSeconds()).padStart(2, "0");
 
-  // return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
   return `${year}-${month}-${day}`;
 }
-
-// Parse the iCal data and adjust for the timezone offset
-// function parseICal(events, tzOffset) {
-//   try {
-//     // const events = ical.parseICS(data);
-//     const data = Object.values(events).slice(1);
-//     return data.map((event) => {
-//       if (event.start) {
-//         event.start = formatDateWithTimezone(event.start, tzOffset);
-//       }
-//       if (event.end) {
-//         event.end = formatDateWithTimezone(event.end, tzOffset);
-//       }
-//       return {
-//         DTStart: event.start ? event.start : "",
-//         DTEnd: event.end ? event.end : "",
-//         Attendee: event.attendee || "",
-//       };
-//     });
-//   } catch (error) {
-//     throw new Error(`Error parsing iCal data: ${error.message}`);
-//   }
-// }
 
 function parseICal(events, tzOffset, monthNumber) {
   try {
